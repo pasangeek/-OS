@@ -10,8 +10,11 @@ import kotlinx.coroutines.flow.SharingStarted
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.flatMapLatest
 import kotlinx.coroutines.flow.flow
+import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.map
+import kotlinx.coroutines.flow.onEach
 import kotlinx.coroutines.flow.stateIn
+import kotlinx.coroutines.flow.update
 import java.time.LocalTime
 import java.time.format.DateTimeFormatter
 
@@ -48,7 +51,19 @@ class StopWatchOsViewModel : ViewModel() {
                     isRunning = timerSate == TimerSate.RUNNING
                 )
             }
+            .onEach { timeDiff->
+                _elapsedTime.update { it + timeDiff }
+            }
+            .launchIn(viewModelScope)
     }
+fun toggleIsRunning()
+{
+    when(timerSate.value){
+        TimerSate.RUNNING->_timerState.update { TimerSate.PAUSED }
+        TimerSate.PAUSED,
+            TimerSate.RESET->_timerState.update { TimerSate.RUNNING }
+    }
+}
 
     /**
      * Creates a flow that emits the time differences when the timer is running.

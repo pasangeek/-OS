@@ -1,6 +1,8 @@
 [versions]
 agp = "8.4.1"
 kotlin = "1.9.0"
+lifecycleViewmodelCompose = "2.8.4"
+materialIconsExtended = "1.6.8"
 playServicesWearable = "18.1.0"
 composeBom = "2023.08.00"
 composeMaterial = "1.2.1"
@@ -9,6 +11,9 @@ activityCompose = "1.7.2"
 coreSplashscreen = "1.0.1"
 
 [libraries]
+lifecycle-runtime-compose = { module = "androidx.lifecycle:lifecycle-runtime-compose", version.ref = "lifecycleViewmodelCompose" }
+lifecycle-viewmodel-compose = { module = "androidx.lifecycle:lifecycle-viewmodel-compose", version.ref = "lifecycleViewmodelCompose" }
+material-icons-extended = { module = "androidx.compose.material:material-icons-extended", version.ref = "materialIconsExtended" }
 play-services-wearable = { group = "com.google.android.gms", name = "play-services-wearable", version.ref = "playServicesWearable" }
 compose-bom = { group = "androidx.compose", name = "compose-bom", version.ref = "composeBom" }
 ui = { group = "androidx.compose.ui", name = "ui" }

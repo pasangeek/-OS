@@ -64,7 +64,11 @@ fun toggleIsRunning()
             TimerSate.RESET->_timerState.update { TimerSate.RUNNING }
     }
 }
-
+fun resetTimer()
+{
+    _timerState.update { TimerSate.RESET }
+    _elapsedTime.update { 0L }
+}
     /**
      * Creates a flow that emits the time differences when the timer is running.
      *
